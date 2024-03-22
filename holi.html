@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-eZ+YO6MX5xwzE9RGxAh5l9r1zF8PuDP3PHG/tuS3tSY3Qqg7p9Db6mINsPNOIJxa+6Ij5ZM5zavsgsMiIw7Qjg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +21,7 @@
   </nav>
 
   <div class="myinfo">
-    <h1 class="holi">Hey there!</h1>
+    <h1 class="holi">Hey there! <i class="fas fa-balloon balloon-icon"></i></h1>
     <h1>i am Indranil</h1>
     <p>Wishing you and your loved ones a very colourful Holi<br>May you forget all your worries and enjoy this day to
       the fullest.<br>
@@ -36,7 +37,7 @@
     tag.src = 'https://www.youtube.com/iframe_api';
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  
+
     // Create YouTube player when API is ready
     var player;
     function onYouTubeIframeAPIReady() {
@@ -46,19 +47,26 @@
         videoId: 'Z3zs5hHsLOk', // Replace VIDEO_ID with the actual YouTube video ID
         playerVars: {
           'autoplay': 1, // Autoplay video
+          'mute': 1,     // Mute video
           'controls': 0, // Hide player controls
           'rel': 0,      // Hide related videos at the end
           'showinfo': 0, // Hide video title and uploader info
           'modestbranding': 1 // Reduce YouTube branding in the player
         },
         events: {
-          'onReady': onPlayerReady
+          'onStateChange': onPlayerStateChange
         }
       });
     }
-  
-    function onPlayerReady(event) {
-      event.target.playVideo();
+
+    function onPlayerStateChange(event) {
+      if (event.data == YT.PlayerState.PLAYING) {
+        player.playVideo();
+        player.mute();
+        player.setPlaybackQuality('hd720');
+        player.setSize(window.innerWidth, window.innerHeight);
+        player.setFullscreen(true);
+      }
     }
   </script>
 

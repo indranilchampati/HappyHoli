@@ -1,0 +1,49 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.happy-holi-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.happy-holi {
+    font-size: 36px;
+    color: white;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    display: inline-block;
+    animation: rubberBand 1s infinite, colorChange 5s infinite;
+}
+.emoji {
+    font-size: 36px;
+    margin-left: 5px;
+    animation: rubberBand 1s infinite, rotateEmoji 2s infinite;
+}
+@keyframes rubberBand {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.25); }
+    50% { transform: scale(0.95); }
+    57% { transform: scale(1.05); }
+    64% { transform: scale(0.97); }
+    71% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+@keyframes colorChange {
+    0% { color: white; }
+    50% { color: cyan; }
+    100% { color: white; }
+}
+@keyframes rotateEmoji {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
