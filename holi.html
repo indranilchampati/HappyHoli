@@ -1,43 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Holi 2024</title>
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container">
-          </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-   
+    <div class="container">
+      <!-- Navbar content -->
+    </div>
+  </nav>
 
+  <div class="myinfo">
+    <h1 class="holi">Hey there!</h1>
+    <h1>i am Indranil</h1>
+    <p>Wishing you and your loved ones a very colourful Holi<br>May you forget all your worries and enjoy this day to
+      the fullest.<br>
+    <h2 class="hue">Happy Holi!</h2>
+    </p>
+  </div>
+
+  <div id="player"></div>
+
+  <script>
+    // Load YouTube Player API asynchronously
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
   
-      </div>
-      </div>
-    </nav>
-
-    <div class="myinfo">
-      <h1 class="holi">Hey there!</h1>
-      <h1>i am Indranil</h1>
-          <p>Wishing you and your loved ones a very colourful Holi<br>May you forget all your worries and enjoy this day to the fullest.<br> <h2 class="hue">Happy Holi!</h2></p>
-
-      </div>
-
-      <video autoplay loop play-inline muted  >
-          <source src="Happy Holi.mp4">
-              video is not load
-          </video>
-
+    // Create YouTube player when API is ready
+    var player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '100%',
+        width: '100%',
+        videoId: 'Z3zs5hHsLOk', // Replace VIDEO_ID with the actual YouTube video ID
+        playerVars: {
+          'autoplay': 1, // Autoplay video
+          'controls': 0, // Hide player controls
+          'rel': 0,      // Hide related videos at the end
+          'showinfo': 0, // Hide video title and uploader info
+          'modestbranding': 1 // Reduce YouTube branding in the player
+        },
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
   
+    function onPlayerReady(event) {
+      event.target.playVideo();
+    }
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+      font-family: poppins, sans-serif;
+    }
+
+    body {
+      overflow: hidden;
+    }
+
+    .myinfo {
+      position: relative;
+      top: 200px;
+      left: 150px;
+      width: 500px;
+      color: white;
+      text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.73);
+      z-index: 2; /* Ensure content is above video */
+    }
+
+    .navbar {
+      margin-top: 10px;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      filter: drop-shadow(0 0 10px white);
+    }
+
+    .nav-link {
+      color: white;
+    }
+
+    .nav-item {
+      color: white;
+      margin-left: 20px;
+    }
+
+    .btn {
+      border: none;
+      color: white;
+      background: transparent;
+      border: 1px solid white;
+      border-radius: 50px;
+    }
+
+    .holi {
+      color: transparent;
+      background-clip: border-box;
+      color: whitesmoke;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 90px;
+      font-weight: bold;
+    }
+
+    .nav-link:hover {
+      color: rgb(255, 0, 0);
+      text-shadow: 0 0 20px black;
+    }
+
+    video {
+      position: absolute;
+      left: 00px;
+      bottom: 00px;
+      z-index: -2;
+      height: auto;
+      min-width: 100%;
+      min-height: 100%;
+      filter: blur(100);
+    }
+
+    .hue {
+      color: rgb(240, 81, 2);
+      font-weight: bold;
+      animation: hue 5s infinite;
+    }
+
+    @keyframes hue {
+      0% {
+        -webkit-filter: hue-rotate(0deg);
+      }
+
+      100% {
+        -webkit-filter: hue-rotate(700deg);
+      }
+    }
+
+    /* Additional styles for full screen */
+    #player {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1; /* Ensure video is behind content */
+    }
+  </style>
+
 </body>
 
 </html>
-
-
